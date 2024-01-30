@@ -24,10 +24,10 @@ class MainUnit:
     def receive_responses(self):
         print("Receiving...")
         while True:
-            message = self.bus.recv(timeout=10)
+            message = self.bus.recv(timeout=1)
             if message is None:
                 break
-            print(f"Received message: ID={message.arbitration_id}, Data={message.data}")
+            print(f"Received message: ID={hex(message.arbitration_id)}, Data={int.from_bytes(message.data)}")
             
     def close_bus(self):
         print("close the CAN bus")

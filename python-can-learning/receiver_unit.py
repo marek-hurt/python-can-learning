@@ -27,6 +27,7 @@ class ReceiverUnit(threading.Thread):
                 message_counts[message.arbitration_id] = message_counts.get(message.arbitration_id, 0) + 1
                 
                 file.write(str(message) + '\n')
+                file.write(str(message_counts[message.arbitration_id]) + '\n')
                 if message.arbitration_id == 0xFF:
                     self.send_statistics(message_counts)
                     self.stop_receiving()
@@ -36,9 +37,8 @@ class ReceiverUnit(threading.Thread):
         print("0xFF message received in unit with output file: ", self.output_file)
         
     def send_statistics(self, message_counts):
-        # Odeslat statistiky zpět na sběrnici
         for adress, count in message_counts.items():
-            if adress != 0xFF:  # Ignorovat ID 0xFF
-                response_message = can.Message(arbitration_id=adress, data=[count], is_extended_id=False)
+            if adress != 0xFF:  # Ignore ID 0xFF
+                response_message = can.Message(arbitration_id=adress, data=count.to_bytes(4, byteorder='big'), is_extended_id=False)
                 self.bus.send(response_message)
                 
