@@ -20,5 +20,16 @@ class MainUnit:
                     time.sleep(0.001)
         except can.CanError as e:
             print("CAN communication error:", e)
-        finally:
-            self.bus.shutdown()
+            
+    def receive_responses(self):
+        print("Receiving...")
+        while True:
+            message = self.bus.recv(timeout=10)
+            if message is None:
+                break
+            print(f"Received message: ID={message.arbitration_id}, Data={message.data}")
+            
+    def close_bus(self):
+        print("close the CAN bus")
+        self.bus.shutdown()
+        

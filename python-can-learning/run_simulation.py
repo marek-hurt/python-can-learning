@@ -22,6 +22,9 @@ def main():
 
     unit1.join()
     unit2.join()
-    print("connection lost")
+    
+    main_unit.receive_responses()
+    main_unit.close_bus()
+
 if __name__ == "__main__":
     main()
