@@ -41,7 +41,7 @@ class MainUnit:
             message = self.bus.recv(timeout=1)
             if message is None:
                 break
-            print(f"Received message: ID = {hex(message.arbitration_id)}, Number of messages = {int.from_bytes(message.data)}")
+            print(f"Received message: ID = {hex(message.arbitration_id)}, Number of messages = {int.from_bytes(message.data, byteorder='big')}")
             
     def close_bus(self):
         """
