@@ -1,14 +1,18 @@
 '''
 Created on 30. 1. 2024
 
-@author: marek
+@author: Marek Hurt
 '''
 # run_simulation.py
 from main_unit import MainUnit
 from receiver_unit import ReceiverUnit
 
 def main():
-    
+    """
+    Main function to run the CAN bus simulation.
+    Initializes and runs the main unit and receiver units.
+    """
+       
     # run main unit, parameter input blf file
     main_unit = MainUnit('input.blf')
     
