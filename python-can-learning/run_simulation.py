@@ -28,6 +28,9 @@ def main():
     unit2.join()
     
     main_unit.receive_responses()
+    
+    unit1.close_bus()
+    unit2.close_bus()
     main_unit.close_bus()
 
 if __name__ == "__main__":

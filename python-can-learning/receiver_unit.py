@@ -55,7 +55,14 @@ class ReceiverUnit(threading.Thread):
         """
         self.running = False
         print("0xFF message received in unit with output file: ", self.output_file)
-        
+   
+    def close_bus(self):
+        """
+        Closes the CAN bus associated with this receiver unit.
+        """
+        print("Closing CAN bus in receiver unit.")
+        self.bus.shutdown()
+             
     def __send_statistics(self, message_counts):
         """
         Sends statistics of received messages back to the CAN bus.

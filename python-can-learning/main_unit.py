@@ -47,6 +47,6 @@ class MainUnit:
         """
         Closes the CAN bus.
         """
-        print("close the CAN bus")
+        print("Closing CAN bus in main unit.")
         self.bus.shutdown()
         
